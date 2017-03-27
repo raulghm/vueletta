@@ -2,35 +2,34 @@
   <div class="voletta">
     <div class="voletta-body">
       <header>
+        <img src="https://vuejs.org/images/logo.png">
         <h1>Voletta</h1>
         <p>Calcula tu boleta de honorarios</p>
       </header>
 
       <main>
         <div class="voletta-input">
-          $ <input type="number" v-model="valor" @keyup="procesa" placeholder="0" autofocus="true">
+          <input type="number" v-model.number="valor" placeholder="$" autofocus="true" @keyup="procesa">
         </div>
 
         <div class="voletta-bottom">
-          <div>
-            <h2>Líquido</h2>
-            Si lo pactado fue en valores líquidos, <br>
-            deberás hacer la boleta por <label>$ {{ liquidoHacer }}</label> y recibirás:
-            <label>$ {{ valor }}</label> en efectivo.
-          </div>
+          <h2>Líquido</h2>
+          Si lo pactado fue en valores líquidos, <br>
+          deberás hacer la boleta por <label>$ {{ liquidoHacer | formatMoney }}</label> y recibirás:
+          <label>$ {{ valor | formatMoney }}</label> en efectivo.
 
-          <div>
-            <h2>Bruto</h2>
-            Si lo pactado fue en valores brutos, <br>
-            deberás hacer la boleta por <label>$ {{ valor }}</label> y recibirás:
-            <label>$ {{ brutoHacer }}</label> en efectivo.
-          </div>
+          <h2>Bruto</h2>
+          Si lo pactado fue en valores brutos, <br>
+          deberás hacer la boleta por <label>$ {{ valor | formatMoney }}</label> y recibirás:
+          <label>$ {{ brutoHacer | formatMoney }}</label> en efectivo.
         </div>
       </main>
 
       <footer>
-        Desarrollado con Vue 2.x, Webpack 2, PostCSS + cssnext
+        Desarrollado con Vue 2, Webpack 2, PostCSS + cssnext
       </footer>
+
+      <a href="https://github.com/raulghm/voletta"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     </div>
   </div>
 </template>
@@ -51,12 +50,17 @@ export default {
 
   methods: {
     procesa() {
+      // Factores para calculo
       const factorBruto = 0.9;
       const factorLiquido = 1.1111111111111112;
 
-      this.liquidoHacer = this.formatMoney(this.valor * factorLiquido);
-      this.brutoHacer = this.formatMoney(this.valor * factorBruto);
+      // Calculo y asignacion de valores
+      this.liquidoHacer = this.valor * factorLiquido;
+      this.brutoHacer = this.valor * factorBruto;
     },
+  },
+
+  filters: {
     formatMoney(value) {
       return accounting.formatMoney(value, '', 0, '.'); // $4.999;
     },
@@ -98,11 +102,6 @@ export default {
   --border-radius: 4px;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   font-family: var(--font-family-serif);
   -webkit-font-smoothing: antialiased;
@@ -112,41 +111,7 @@ body {
   color: var(--color-base);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-base);
-}
-
-.voletta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: inherit;
-  padding: 20px;
-}
-
-.voletta-body {
-  flex: 1;
-}
-
-header {
-  margin-bottom: 20px;
-}
-
-.voletta-input {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.voletta-input input {
-  padding: 20px;
-  font-size: 2rem;
-  max-width: 80%;
-  margin: 0 auto;
-  border-radius: var(--border-radius);
-  border: 2px solid color(var(--color-primary) b(40%));
-  outline: 0;
-}
-
-.voletta-bottom h2 {
-  margin-top: 1.2rem;
+  line-height: 1.3;
 }
 
 h1,
@@ -159,13 +124,51 @@ h1 {
   font-weight: 300;
 }
 
+.voletta {
+  padding: 20px;
+}
+
+.voletta-body {
+  flex: 1;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header img {
+  max-width: 100px;
+}
+
+.voletta-input {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.voletta-input input {
+  padding: 16px 20px;
+  font-size: 2.2rem;
+  max-width: 80%;
+  margin: 0 auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 4px color(var(--color-primary) b(40%)) inset;
+  border: 2px solid color(var(--color-primary) b(40%));
+  outline: 0;
+}
+
+.voletta-bottom h2 {
+  margin-top: 1.2rem;
+}
+
 label {
   color: var(--color-primary);
   border-radius: var(--border-radius);
   background-color: var(--color-white);
   padding: 0 4px;
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  margin-bottom: 1px;
 }
 
 footer {
