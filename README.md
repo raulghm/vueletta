@@ -1,4 +1,4 @@
-# Voletta
+# Vueletta
 
 > Un simple clon de Boletta (calculo de boleta de honorarios), desarrollado con Vue 2.
 
