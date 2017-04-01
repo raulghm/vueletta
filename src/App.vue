@@ -1,18 +1,18 @@
 <template>
-  <div class="voletta">
-    <div class="voletta-body">
+  <div class="vueletta">
+    <div class="vueletta-body">
       <header>
         <img src="https://vuejs.org/images/logo.png">
-        <h1>Voletta</h1>
+        <h1>Vueletta</h1>
         <p>Calcula tu boleta de honorarios</p>
       </header>
 
       <main>
-        <div class="voletta-input">
+        <div class="vueletta-input">
           <input type="number" v-model.number="valor" placeholder="$" autofocus="true" @keyup="procesa">
         </div>
 
-        <div class="voletta-bottom">
+        <div class="vueletta-bottom">
           <h2>Líquido</h2>
           Si lo pactado fue en valores líquidos, <br>
           deberás hacer la boleta por <label>$ {{ liquidoHacer | formatMoney }}</label> y recibirás:
@@ -29,7 +29,7 @@
         Desarrollado con Vue 2, Webpack 2, PostCSS + cssnext
       </footer>
 
-      <a href="https://github.com/raulghm/voletta"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+      <a href="https://github.com/raulghm/vueletta"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     </div>
   </div>
 </template>
@@ -124,11 +124,11 @@ h1 {
   font-weight: 300;
 }
 
-.voletta {
+.vueletta {
   padding: 20px;
 }
 
-.voletta-body {
+.vueletta-body {
   flex: 1;
 }
 
@@ -140,12 +140,12 @@ header img {
   max-width: 100px;
 }
 
-.voletta-input {
+.vueletta-input {
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.voletta-input input {
+.vueletta-input input {
   padding: 16px 20px;
   font-size: 2.2rem;
   max-width: 80%;
@@ -156,7 +156,7 @@ header img {
   outline: 0;
 }
 
-.voletta-bottom h2 {
+.vueletta-bottom h2 {
   margin-top: 1.2rem;
 }
 
